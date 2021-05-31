@@ -1,0 +1,88 @@
+1. 指定数组规模，按正序/逆序/乱序随机生成数组
+    输入:
+    规模:seq_len
+    生成数组的方式: 01-正序，02-乱序，03-倒序
+    输出:
+    长度为seq_len的数组
+
+2. 对待排序的数组，分别按6种排序方式进行排序,返回各自排序结果及基本运算次数（比较、移动）
+    输入:
+    待排序的数组(由1生成)
+    输出:
+    6种方式的排序结果
+    6种方式的基本运算次数（比较、移动）
+
+    输出示例:
+     6种方式的排序结果(ordered_sequences)
+    {'select': [1, 27, 48, 59, 62, 73, 75, 99],
+     'bubble': [1, 27, 48, 59, 62, 73, 75, 99],
+     'quick': [1, 27, 48, 59, 62, 73, 75, 99],
+     'heap': [121, 122, 123, 124, 125, 126, 127, 128],
+     'merge': [1, 27, 48, 59, 62, 73, 75, 99],
+     'insert': [1, 27, 48, 59, 62, 73, 75, 99]}
+
+    6种方式的基本运算次数（比较、移动）(basic_operate_counts)
+    [{'sort_type': 'select', 'compare_count': 28, 'move_count': 7},
+     {'sort_type': 'bubble', 'compare_count': 28, 'move_count': 9},
+     {'sort_type': 'quick', 'compare_count': 15, 'move_count': 5},
+     {'sort_type': 'heap', 'compare_count': 28, 'move_count': 0},
+     {'sort_type': 'merge', 'compare_count': 15, 'move_count': 9},
+     {'sort_type': 'insert', 'compare_count': 28, 'move_count': 9}]
+
+3. 根据时间效率（比较，移动）对6种算法进行排序
+   (对6种排序方式的比较次数or移动次数进行按生序or降序排序)
+    输入:
+    6种排序方式的基本运算次数
+    按哪种基本运算次数进行排序：比较次数/移动次数
+    升序or降序
+    输出：
+    排好序的6种排序方式的基本运算次数
+
+    输出示例:（字典+列表形式）
+    对 move_count 按降序排序:
+    [{'sort_type': 'merge', 'compare_count': 15, 'move_count': 12},
+    {'sort_type': 'bubble', 'compare_count': 28, 'move_count': 11},
+    {'sort_type': 'insert', 'compare_count': 28, 'move_count': 11},
+    {'sort_type': 'select', 'compare_count': 28, 'move_count': 7},
+    {'sort_type': 'quick', 'compare_count': 18, 'move_count': 7},
+    {'sort_type': 'heap', 'compare_count': 28, 'move_count': 0}]
+
+4. 指定最大规模及数组随机生成方式，对6种算法进行回归分析（比较次数和移动次数）
+    输入:
+    最大规模: seq_len_max
+    生成数组的方式: 01-正序，02-乱序，03-倒序
+    输出:
+    对比较次数进行拟合的多项式系数、拟合过程的均方根误差
+    对移动次数进行拟合对多项式系数、拟合过程的均方根误差
+
+    输出示例:
+    （字典+列表形式） 'compare': [0.5, -0.5, 0.0, 0.0] 前3个是比较次数的多项式系数，最后一个是均方根误差
+    [{'sort_type': 'bubble_sort', 'compare': [0.5, -0.5, 0.0, 0.0], 'move': [0.27, -0.61, 1.29, 8.25]},
+    {'sort_type': 'quick_sort', 'compare': [0.09, 2.06, -5.3, 6.74], 'move': [0.05, 0.5, -0.54, 3.82]},
+    {'sort_type': 'select_sort', 'compare': [0.5, -0.5, 0.0, 0.0], 'move': [0.0, 1.0, -1.0, 0.0]},
+    {'sort_type': 'merge_sort', 'compare': [0.07, 2.06, -4.68, 1.59], 'move': [0.03, 1.74, -4.07, 3.6]},
+    {'sort_type': 'insert_sort', 'compare': [0.5, -0.5, 0.0, 0.0], 'move': [0.28, -0.87, 2.35, 7.56]}]
+
+5. 对于某一个待排序数组，根据其规模利用已经生成的回归模型进行预测'基本运算次数估计值',并调用排序算法计算其'基本运算次数实际值',返回估计值与实际值
+    输入:
+    待排序的数组(由1生成)
+    输出:
+    '基本运算次数估计值','基本运算次数实际值'
+
+    输出示例：
+    （字典+列表）
+    [{'sort_type': 'bubble_sort', 'pre_comp_count': 28, 'truth_comp_count': 28, 'pre_move_count': 14, 'truth_move_count': 21},
+     {'sort_type': 'quick_sort', 'pre_comp_count': 17, 'truth_comp_count': 18, 'pre_move_count': 17, 'truth_move_count': 5},
+     {'sort_type': 'select_sort', 'pre_comp_count': 28, 'truth_comp_count': 28, 'pre_move_count': 7, 'truth_move_count': 7},
+     {'sort_type': 'merge_sort', 'pre_comp_count': 16, 'truth_comp_count': 15, 'pre_move_count': 12, 'truth_move_count': 13},
+     {'sort_type': 'insert_sort', 'pre_comp_count': 28, 'truth_comp_count': 28, 'pre_move_count': 14, 'truth_move_count': 21},
+     {'sort_type': 'heap_sort', 'pre_comp_count': 18, 'truth_comp_count': 15, 'pre_move_count': 15, 'truth_move_count': 14}]
+
+
+5. 6种算法以规模n为x轴，时间效率为y轴的曲线图
+    根据4返回的多项式系数画出曲线图
+
+6. 多项式拟合过程中的散点及拟合的曲线图
+   可以直接调用4中生成的图像吗？（图像保存在results_pic文件夹中）
+
+

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排序算法复杂度分析工具</title>
+    <link rel="stylesheet" type="text/css" href="static/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-4.1.3-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-4.1.3-dist/css/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-4.1.3-dist/css/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/index_style.css"/>
+    <link rel="stylesheet" type="text/css" href="static/bootstrap-table/bootstrap-table.min.css"/>
+    <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="static/js/echarts.js"></script>
+    <script type="text/javascript" src="static/bootstrap-4.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap-4.1.3-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap-table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="static/js/index_js.js"></script>
+</head>
+<body class="container-fluid">
+    <div class="row header">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <img src="static/image/logo.png" alt=""/>
+            <span>常见排序算法 复杂度分析工具</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <div class="btn_nav">
+            <div class="row">
+                <div class="btn-cal">
+                    <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
+                    <span>算法测试</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-analyze">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    <span>算法分析</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-6 content">
+            <div class="row cal">
+                <div class="col-md-12">
+                    <div class="row g-cal-cap">
+                        <span class="cal-prompt1">请指定输入规模 n：</span>
+                        <input type="text" id="cal-cap-n"/>
+                        <span class="cal-prompt2">，请选择测数据排列方式：</span>
+                        <select class="" id="cal-data-permtt-method">
+                            <option value="01">正序</option>
+                            <option value="02">乱序</option>
+                            <option value="03">倒序</option>
+                        </select>
+                        <button class="btn btn-generate-data">生成测试数据</button>
+                    </div>
+
+                    <div class="row splitline1 progress genearte-data-progress"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt3">测试数据：</span>
+                        <button class="btn btn-start-sort">开始排序</button>
+                    </div>
+                    <div class="row show-test-data"></div>
+
+                    <div class="row splitline1 progress sort-progress"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt4">排序结果：</span>
+                    </div>
+
+                    <div class="row r-choose-sort">
+                        <div class="col-md-2 sort-name" ><span class="">选择排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row r-bubble-sort">
+                        <div class="col-md-2 sort-name" ><span class="">冒泡排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row r-quick-sort">
+                        <div class="col-md-2 sort-name" ><span class="">快速排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row r-heap-sort">
+                        <div class="col-md-2 sort-name" ><span class="">堆排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row r-merge-sort">
+                        <div class="col-md-2 sort-name" ><span class="">归并排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row r-insert-sort">
+                        <div class="col-md-2 sort-name" ><span class="">插入排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline2"></div>
+                    <div class="row r-insert-sort">
+                        <div class="col-md-2 sort-name" ><span class="">希尔排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+                    <div class="row splitline2"></div>
+                    <div class="row r-insert-sort">
+                        <div class="col-md-2 sort-name" ><span class="">基数排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+                    <div class="row splitline2"></div>
+                    <div class="row r-insert-sort">
+                        <div class="col-md-2 sort-name" ><span class="">二分插入排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+                    <div class="row splitline2"></div>
+                    <div class="row r-insert-sort">
+                        <div class="col-md-2 sort-name" ><span class="">鸡尾酒排序：</span></div>
+                        <div class="col-md-9 sort-result"></div>
+                    </div>
+
+                    <div class="row splitline1"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt4">基本操作次数排序：</span>
+                    </div>
+
+                    <div class="row table-responsive">
+                        <table data-toggle="table" class="table table-bordered text-nowrap" id="sort-times">
+                            <thead><tr>
+                                <th data-sortable="true" >算法</th>
+                                <th data-sortable="true">比较次数</th>
+                                <th data-sortable="true">移动次数</th>
+                            </tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row analyze">
+                <div class="col-md-12">
+                    <div class="row g-analyze-max-cap">
+                        <span class="cal-prompt1">请指定最大输入规模n：</span>
+                        <input type="text" id="analyze-max-n"/>
+                        <span class="cal-prompt2">，选择测数据排列方式：</span>
+                        <select class="" id="analyze-data-permtt-method">
+                            <option value="01">正序</option>
+                            <option value="02">乱序</option>
+                            <option value="03">倒序</option>
+                        </select>
+                        <button class="btn btn-start-analyze">开始分析</button>
+                    </div>
+
+                    <div class="row splitline1 progress start-analyze-progress"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt4">比较次数的回归分析结果：</span>
+                    </div>
+
+                    <div class="row">
+                        <table data-toggle="table" class="table table-bordered" id="compare-analyze">
+                            <thead><tr>
+                                <th data-sortable="true">算法</th>
+                                <th data-sortable="true">比较次数拟合多项式</th>
+                                <th data-sortable="true">均方根误差 RMSE</th>
+                            </tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="row splitline2"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt4">移动次数的回归分析结果：</span>
+                    </div>
+
+                    <div class="row">
+                        <table data-toggle="table" class="table table-bordered" id="exchange-analyze">
+                            <thead><tr>
+                                <th data-sortable="true">算法</th>
+                                <th data-sortable="true">移动次数拟合多项式</th>
+                                <th data-sortable="true">均方根误差 RMSE</th>
+                            </tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="row splitline1"></div>
+
+                    <div class="row">
+                        <span class="cal-prompt4">随着输入规模变化，各算法基本运算次数的变化情况(折线图)：</span>
+                    </div>
+
+                    <div class="row line-charts-all charts_begin">
+                        <div class="col-md-12" id="all-sort-compare-times"></div>
+                    </div>
+<!--                    <div class="chart-title text-center"><span>各排序算法的比较次数随规模增长情况</span></div>-->
+
+                    <div class="row line-charts-all">
+                        <div class="col-md-12" id="all-sort-excahnge-times"></div>
+                    </div>
+<!--                    <div class="chart-title text-center"><span>各排序算法的交换次数随规模增长情况</span></div>-->
+
+                    <div class="row line-charts-two">
+                        <div class="col-md-6">
+                            <div class="row line-chart" id="line-chart-choose"></div>
+<!--                            <div class="chart-title text-center">选择算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row line-chart line-chart-right" id="line-chart-bubble"></div>
+<!--                            <div class="chart-title text-center">冒泡算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                    </div>
+                    <div class="row line-charts-two">
+                        <div class="col-md-6">
+                            <div class="row line-chart" id="line-chart-quick"></div>
+<!--                            <div class="chart-title text-center">快速算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row line-chart line-chart-right" id="line-chart-heap"></div>
+<!--                            <div class="chart-title text-center">堆算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                    </div>
+                    <div class="row line-charts-two">
+                        <div class="col-md-6">
+                            <div class="row line-chart" id="line-chart-merge"></div>
+<!--                            <div class="chart-title text-center">归并算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row line-chart line-chart-right" id="line-chart-insert"></div>
+<!--                            <div class="chart-title text-center">插入算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                    </div>
+
+
+                    <!--   whf add -->
+
+                    <div class="row line-charts-two">
+                        <div class="col-md-6">
+                            <div class="row line-chart" id="line-chart-shell"></div>
+<!--                            <div class="chart-title text-center">快速算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row line-chart line-chart-right" id="line-chart-radix"></div>
+<!--                            <div class="chart-title text-center">堆算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                    </div>
+                    <div class="row line-charts-two">
+                        <div class="col-md-6">
+                            <div class="row line-chart" id="line-chart-binaryInsert"></div>
+<!--                            <div class="chart-title text-center">快速算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row line-chart line-chart-right" id="line-chart-coaktail"></div>
+<!--                            <div class="chart-title text-center">堆算法的基本运算次数随规模增长情况</div>-->
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
